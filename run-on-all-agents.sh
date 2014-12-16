@@ -1,0 +1,1 @@
+sudo touch /usr/local/bin/hello-agent
