@@ -1,15 +1,22 @@
 #!/bin/sh
 
-echo "Restroing the database"
-sudo bahmni stop
-sudo mysql -uroot -ppassword -e "drop database openmrs"
-sudo mysql -uroot -ppassword -e "create database openmrs"
-sudo mysql -uroot -ppassword openmrs < /home/centos/dbRestore/openmrs_demo_dump.sql
-sudo mysql -uroot -ppassword -e "FLUSH PRIVILEGES"
-sudo psql -Upostgres -c "drop database if exists clinlims;"
-sudo psql -Upostgres -c "create database clinlims;"
-sudo psql -Uclinlims clinlims < /home/centos/dbRestore/openelis_demo_dump.sql
-sudo psql -Upostgres -c  "drop database if exists openerp;"
-sudo psql -Upostgres -c  "create database openerp;"
-sudo psql -Uopenerp openerp < /home/centos/dbRestore/openerp_demo_dump.sql
-sudo bahmni start
+DB_BACKUP_FOLDER="/home/centos/dbRestore"
+OPENMRS_DB_FILE_NAME="openmrs_demo_dump.sql"
+OPENELIS_DB_FILE_NAME="openelis_demo_dump.sql"
+OPENERP_DB_FILE_NAME="openerp_demo_dump.sql"
+OPENELIS_DB_NAME="clinlims"
+OPENERP_DB_NAME="openerp"
+
+echo "Restoring the database"
+bahmni stop
+mysql -u$SQLUSER -p$PASSWORD -e "drop database openmrs"
+mysql -u$SQLUSER -p$PASSWORD -e "create database openmrs"
+mysql -u$SQLUSER -p$PASSWORD openmrs < $DB_BACKUP_FOLDER/$OPENMRS_DB_FILE_NAME
+mysql -u$SQLUSER -p$PASSWORD -e "FLUSH PRIVILEGES"
+psql -U$PSQLUSER -c "drop database if exists clinlims;"
+psql -U$PSQLUSER -c "create database clinlims;"
+psql -U$CLINLIMSUSER $OPENELIS_DB_NAME < $DB_BACKUP_FOLDER/$OPENELIS_DB_FILE_NAME
+psql -U$PSQLUSER -c  "drop database if exists openerp;"
+psql -U$PSQLUSER -c  "create database openerp;"
+psql -U$OPENERPUSER $OPENERP_DB_NAME < $DB_BACKUP_FOLDER/$OPENERP_DB_FILE_NAME
+bahmni start
