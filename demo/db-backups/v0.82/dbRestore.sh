@@ -1,9 +1,9 @@
 #!/bin/sh
 
 DB_BACKUP_FOLDER="/home/centos/dbRestore"
-OPENMRS_DB_FILE_NAME="openmrs_demo_dump.sql"
-OPENELIS_DB_FILE_NAME="openelis_demo_dump.sql"
-OPENERP_DB_FILE_NAME="openerp_demo_dump.sql"
+OPENMRS_DB_FILE_NAME="openmrs_backup.sql"
+OPENELIS_DB_FILE_NAME="openelis_backup.sql"
+OPENERP_DB_FILE_NAME="openerp_backup.sql"
 OPENELIS_DB_NAME="clinlims"
 OPENERP_DB_NAME="openerp"
 
