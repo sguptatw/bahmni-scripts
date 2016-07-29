@@ -1,5 +1,7 @@
 #!/bin/sh
 
+. ~/.cronfile
+
 DB_BACKUP_FOLDER="/home/centos/dbRestore"
 OPENMRS_DB_FILE_NAME="openmrs_backup.sql"
 OPENELIS_DB_FILE_NAME="openelis_backup.sql"
