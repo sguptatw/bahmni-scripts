@@ -1,11 +1,12 @@
 #!/bin/sh
 
 # This script will be called from a cron job on the server using the below command
-#*/3 * * * * curl https://raw.githubusercontent.com/Bahmni/bahmni-scripts/master/demo/db-backups/v0.82/dbRestore.sh | sh  > /home/centos/dbRestoreLog.log
+# 0 2 * * curl https://raw.githubusercontent.com/Bahmni/bahmni-scripts/master/demo/db-backups/v0.82/dbRestore.sh | sh  > /home/centos/dbRestoreLog.log
 
 . ~/.cronfile
 
 GITHUB_BASE_URL="https://github.com/Bahmni/bahmni-scripts/raw/master/demo/db-backups/v0.82"
+
 OPENELIS_SQL_FILE="openelis_backup.sql"
 OPENERP_SQL_FILE="openerp_backup.sql"
 OPENMRS_SQL_FILE="openmrs_backup.sql"
