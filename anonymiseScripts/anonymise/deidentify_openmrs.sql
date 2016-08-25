@@ -181,7 +181,7 @@ TRUNCATE patient_identifier;
 
 INSERT INTO 
 	patient_identifier
-	(patient_id, identifier, identifier_type, location_id, preferred, creator, date_created, voided)
+	(patient_id, identifier, identifier_type, location_id, preferred, creator, date_created, voided, uuid)
 SELECT
 	patient_id,
 	concat((Select prefix from idgen_seq_id_gen order by rand() limit 1), patient_id),
@@ -190,7 +190,8 @@ SELECT
 	1,
 	1,
 	'20080101',
-	0
+	0,
+	uuid()
 FROM
 	patient;
 
