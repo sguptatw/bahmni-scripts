@@ -59,6 +59,6 @@ truncate table
 
 delete from res_partner where not exists (select ru.partner_id from res_users ru where ru.partner_id = res_partner.id) and id != 1;
 delete from markers where feed_uri like '%atomfeed/encounter/recent%' OR feed_uri like '%atomfeed/patient/recent%';
-delete from event_records where category = 'patient';
+delete from event_records where category = 'product';
 
 truncate table event_records_offset_marker;
