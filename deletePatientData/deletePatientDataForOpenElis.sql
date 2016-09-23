@@ -31,5 +31,7 @@ truncate table result_signature,
 	organization_contact;
 
 delete from person where not exists (select p.person_id from provider p where p.person_id = person.id);
+delete from markers where feed_uri like '%atomfeed/encounter/recent%' OR feed_uri like '%atomfeed/patient/recent%';
+delete from event_records where category = 'patient';
 
 truncate table event_records_offset_marker;
