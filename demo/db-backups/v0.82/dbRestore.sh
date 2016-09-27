@@ -33,7 +33,7 @@ download_and_unzip(){
 
 restore(){
 	echo "Restoring the database"
-	bahmni stop
+	bahmni -i local stop
 	mysql -u$SQLUSER -p$PASSWORD -e "drop database openmrs"
 	mysql -u$SQLUSER -p$PASSWORD -e "create database openmrs"
 	mysql -u$SQLUSER -p$PASSWORD openmrs < $DEST_LOCATION/$OPENMRS_DB_FILE_NAME
@@ -44,7 +44,7 @@ restore(){
 	psql -U$PSQLUSER -c  "drop database if exists openerp;"
 	psql -U$PSQLUSER -c  "create database openerp;"
 	psql -U$OPENERPUSER $OPENERP_DB_NAME < $DEST_LOCATION/$OPENERP_DB_FILE_NAME
-	bahmni start	
+	bahmni -i local start	
 }
 
 setup
