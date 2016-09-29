@@ -5,6 +5,7 @@ OPENMRS_SQL_FILE="deletePatientDataForOpenMRS.sql"
 OPENELIS_SQL_FILE="deletePatientDataForOpenElis.sql"
 OPENERP_SQL_FILE="deletePatientDataForOpenERP.sql"
 CURDIR=$(pwd)
+INVENTORY_FILE="local"
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -15,7 +16,7 @@ stop_all_bahmni_services()
 {
 
 	echo -e "${CYAN}Stopping all bahmni related services${NOCOLOR}"
-	bahmni -i local stop
+	bahmni -i $INVENTORY_FILE stop
 
 }
 
@@ -85,7 +86,7 @@ download_and_delete_openerp_patient_data(){
 start_all_bahmni_services()
 {
 	echo -e "${CYAN}Starting all bahmni related services${NOCOLOR}"
-    bahmni -i local start
+    bahmni -i $INVENTORY_FILE start
 }
 
 stop_all_bahmni_services
