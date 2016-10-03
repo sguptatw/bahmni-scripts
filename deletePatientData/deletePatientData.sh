@@ -4,15 +4,27 @@ GITHUB_URL="https://raw.githubusercontent.com/Bahmni/bahmni-scripts/master/delet
 OPENMRS_SQL_FILE="deletePatientDataForOpenMRS.sql"
 OPENELIS_SQL_FILE="deletePatientDataForOpenElis.sql"
 OPENERP_SQL_FILE="deletePatientDataForOpenERP.sql"
+CURDIR=$(pwd)
+INVENTORY_FILE="local"
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 CYAN='\033[0;36m'
 NOCOLOR='\033[0m'
 
+stop_all_bahmni_services()
+{
 
+	echo -e "${CYAN}Stopping all bahmni related services${NOCOLOR}"
+	bahmni -i $INVENTORY_FILE stop
+
+}
 
 download_and_delete_openmrs_patient_data(){
+	if [ -f $CURDIR/$OPENMRS_SQL_FILE ]; then
+		echo -e "${CYAN}deleting the existing file${NOCOLOR}"
+		rm -rf $CURDIR/$OPENMRS_SQL_FILE
+	fi
     echo -e "${CYAN}downloading openmrs delete patient data sql file${NOCOLOR}"
 	wget $GITHUB_URL/$OPENMRS_SQL_FILE
 	if [ -z $OPENMRS_DB_USER ];then
@@ -30,6 +42,10 @@ download_and_delete_openmrs_patient_data(){
 }
 
 download_and_delete_openelis_patient_data(){
+	if [ -f $CURDIR/$OPENELIS_SQL_FILE ]; then
+		echo -e "${CYAN}deleting the existing file${NOCOLOR}"
+		rm -rf $CURDIR/$OPENELIS_SQL_FILE
+	fi
     echo -e "${CYAN}downloading openelis delete patient data sql file${NOCOLOR}"
 	wget $GITHUB_URL/$OPENELIS_SQL_FILE
 	if [ -z "$OPENELIS_DB_USER" ];
@@ -47,6 +63,10 @@ download_and_delete_openelis_patient_data(){
 }
 
 download_and_delete_openerp_patient_data(){
+	if [ -f $CURDIR/$OPENERP_SQL_FILE ]; then
+		echo -e "${CYAN}deleting the existing file${NOCOLOR}"
+		rm -rf $CURDIR/$OPENERP_SQL_FILE
+	fi
     echo -e "${CYAN}downloading openerp delete patient data sql file${NOCOLOR}"
 	wget $GITHUB_URL/$OPENERP_SQL_FILE
 	if [ -z "$OPENERP_DB_USER" ];
@@ -63,6 +83,14 @@ download_and_delete_openerp_patient_data(){
 	fi
 }
 
+start_all_bahmni_services()
+{
+	echo -e "${CYAN}Starting all bahmni related services${NOCOLOR}"
+    bahmni -i $INVENTORY_FILE start
+}
+
+stop_all_bahmni_services
 download_and_delete_openmrs_patient_data
 download_and_delete_openelis_patient_data
 download_and_delete_openerp_patient_data
+start_all_bahmni_services
