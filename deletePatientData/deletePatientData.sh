@@ -5,7 +5,7 @@ OPENMRS_SQL_FILE="deletePatientDataForOpenMRS.sql"
 OPENELIS_SQL_FILE="deletePatientDataForOpenElis.sql"
 OPENERP_SQL_FILE="deletePatientDataForOpenERP.sql"
 CURDIR=$(pwd)
-INVENTORY_FILE="local"
+
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
