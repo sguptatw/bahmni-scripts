@@ -31,8 +31,7 @@ WHERE patient.uuid = temp_openmrs_patient.old_uuid AND person.id = patient.perso
 UPDATE patient
 SET gender = temp_openmrs_patient.gender,
 	birth_date = temp_openmrs_patient.birthdate,
-	death_date = temp_openmrs_patient.death_date,
-	uuid = temp_openmrs_patient.uuid
+	death_date = temp_openmrs_patient.death_date
 FROM temp_openmrs_patient
 WHERE patient.uuid = temp_openmrs_patient.old_uuid;
                

@@ -169,7 +169,6 @@ CREATE table temp_person_uuid_old(person_id int, uuid varchar(256), PRIMARY KEY(
 INSERT INTO temp_person_uuid_old 
 SELECT person_id, uuid FROM person;
 
-UPDATE person SET uuid=uuid();
 
 	-- If you change columns here, edit copy_openmrs_patient_data_to_*.sql files
 SELECT p.uuid, pui.uuid old_uuid, pio.identifier old_identifier, pi.identifier, pn.given_name,  pn.middle_name,  pn.family_name,

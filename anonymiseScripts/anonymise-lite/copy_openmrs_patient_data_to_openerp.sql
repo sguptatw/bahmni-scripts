@@ -23,7 +23,6 @@ SET name = concat(temp_openmrs_patient.given_name, ' ', temp_openmrs_patient.mid
 	ref = temp_openmrs_patient.identifier,
 	birthdate = temp_openmrs_patient.birthdate,
 	local_name = '',
-	uuid = temp_openmrs_patient.uuid
 FROM temp_openmrs_patient, temp_res_partner_ref
 WHERE res_partner.id = temp_res_partner_ref.id 
 AND temp_res_partner_ref.ref = temp_openmrs_patient.old_identifier;
