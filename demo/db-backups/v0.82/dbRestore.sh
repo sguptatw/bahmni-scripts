@@ -38,9 +38,11 @@ restore(){
 	mysql -u$SQLUSER -p$PASSWORD -e "create database openmrs"
 	mysql -u$SQLUSER -p$PASSWORD openmrs < $DEST_LOCATION/$OPENMRS_DB_FILE_NAME
 	mysql -u$SQLUSER -p$PASSWORD -e "FLUSH PRIVILEGES"
+	ps aux | grep -ie $OPENELIS_DB_NAME | awk '{print $2}' | xargs kill -9
 	psql -U$PSQLUSER -c "drop database if exists clinlims;"
 	psql -U$PSQLUSER -c "create database clinlims;"
 	psql -U$CLINLIMSUSER $OPENELIS_DB_NAME < $DEST_LOCATION/$OPENELIS_DB_FILE_NAME
+	ps aux | grep -ie $OPENELIS_DB_NAME | awk '{print $2}' | xargs kill -9
 	psql -U$PSQLUSER -c  "drop database if exists openerp;"
 	psql -U$PSQLUSER -c  "create database openerp;"
 	psql -U$OPENERPUSER $OPENERP_DB_NAME < $DEST_LOCATION/$OPENERP_DB_FILE_NAME
