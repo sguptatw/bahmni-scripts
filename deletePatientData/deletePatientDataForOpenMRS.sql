@@ -6,7 +6,6 @@ truncate table note;
 truncate table obs_relationship;  
 truncate table concept_proposal;  	
 truncate table concept_proposal_tag_map;
-truncate table active_list;   
 truncate table obs;
 truncate table orders;
 truncate table drug_order; 
