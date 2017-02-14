@@ -45,4 +45,6 @@ delete from markers where feed_uri like '%feed/patient/recent%' ;
 
 truncate table event_records_offset_marker;
 
+update bed set status="AVAILABLE";
+
 set foreign_key_checks=1;
