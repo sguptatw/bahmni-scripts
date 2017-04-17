@@ -6,13 +6,13 @@ declare -a allrepos=("openmrs-module-bahmniapps" "openerp-atomfeed-service" "Ope
  "bahmni-core" "bahmni-java-utils" "openerp-modules" "openerp-functional-tests" "openmrs-distro-bahmni"
  "emr-functional-tests" "default-config" "bahmni-reports" "pacs-integration" "openmrs-module-rulesengine"
  "event-log-service" "bahmni-offline" "bahmni-package" "bahmni-playbooks" "bahmni-tw-playbooks" "bahmni-offline-sync"
- "bahmni-gauge" "openmrs-module-bahmni.ie.apps")
+ "bahmni-gauge" "openmrs-module-bahmni.ie.apps" "implementer-interface" "form-controls" "bahmni-connect")
 
 rm repo_revisions.properties
   for repo in "${allrepos[@]}"
 do
    echo -e "${Gre}Getting latest commit SHA for $repo ${RCol}"
    echo  -e "https://api.github.com/repos/Bahmni/$repo/commits/master"
-   printf "$repo=" | tr "-" "_" >> repo_revisions.properties
+   printf "$repo=" | tr "-" "_" | tr "." "_"  >> repo_revisions.properties
    curl "https://api.github.com/repos/Bahmni/$repo/commits/master"| jq '.sha'| tr -d  "\"">> repo_revisions.properties
 done

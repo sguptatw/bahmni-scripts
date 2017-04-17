@@ -6,13 +6,14 @@ declare -a allrepos=("openmrs-module-bahmniapps" "openerp-atomfeed-service" "Ope
  "bahmni-core" "bahmni-java-utils" "openerp-modules" "openerp-functional-tests" "openmrs-distro-bahmni"
  "emr-functional-tests" "default-config" "bahmni-reports" "pacs-integration" "openmrs-module-rulesengine"
  "event-log-service" "bahmni-offline" "bahmni-package" "bahmni-playbooks" "bahmni-tw-playbooks" "bahmni-offline-sync"
- "bahmni-gauge" "openmrs-module-bahmni.ie.apps")
+ "bahmni-gauge" "openmrs-module-bahmni.ie.apps" "implementer-interface" "form-controls" "bahmni-connect")
 
 cd ~/allrepos
 
 for repo in "${allrepos[@]}"
 do
    cd $repo
+   git checkout master
    echo -e "${Blu}checking for changes in $repo ${RCol}"
    if [ -n "$(git status | grep 'ahead of')" ]
    then
