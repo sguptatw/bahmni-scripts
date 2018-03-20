@@ -31,6 +31,7 @@ truncate table patient_program_attribute;
 truncate table patient_state;
 truncate table patient; 
 truncate table episode;
+truncate table audit_log;
 delete from person_address where person_id <> 1;
 delete from person_attribute where person_id <> 1;
 delete from person_name where not exists
